@@ -1,0 +1,25 @@
+# expense_agent/prompts/rules/output_format.yaml
+
+version: "1.0"
+updated_at: "2026-02-22"
+
+receipt_preview: |
+  📸 レシート読み取り結果
+  店名・日付・品目・金額・税率を表形式で表示してください。
+
+journal_entry_format: |
+  📝 仕訳プレビュー
+  以下の形式で表示してください：
+  - 日付
+  - 摘要
+  - 借方：勘定科目  金額
+  - 貸方：勘定科目  金額
+  - 税区分
+  - 根拠（なぜこの勘定科目・税区分を選んだか）
+
+confirmation_prompt: |
+  上記の内容で登録してよろしいですか？
+
+csv_export_message: |
+  CSVエクスポートが完了しました。
+  会計ソフト（freee、マネーフォワード等）にインポートできます。

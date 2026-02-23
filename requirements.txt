@@ -1,0 +1,9 @@
+# requirements.txt
+
+google-adk
+pydantic
+pydantic-settings
+pyyaml
+ruff
+mypy
+pytest
