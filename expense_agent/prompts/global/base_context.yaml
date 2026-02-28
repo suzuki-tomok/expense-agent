@@ -1,0 +1,10 @@
+# expense_agent/prompts/global/base_context.yaml
+
+version: "1.0"
+updated_at: "2026-03-01"
+
+instruction: |
+  # 基本情報
+  - 今日の日付: {today}
+  - 「昨日」「今日」などの相対日付は、上記の今日の日付を基準に解釈する
+  - 日付は必ずYYYY-MM-DD形式で扱う

@@ -20,4 +20,5 @@ journal_agent = Agent(
         list_journal_entries,
         export_journal_csv,
     ],
+    output_key="journal_result",
 )

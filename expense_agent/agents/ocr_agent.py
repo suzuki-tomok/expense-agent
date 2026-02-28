@@ -12,4 +12,5 @@ ocr_agent = Agent(
     description="レシート画像を読み取り、構造化データに変換するエージェント",
     instruction=load_instruction("prompts/agents/ocr_instruction.yaml"),
     tools=[parse_receipt_result],
+    output_key="ocr_result",
 )
