@@ -19,4 +19,4 @@ def load_instruction(filepath: str) -> str:
     """
     path = PACKAGE_DIR / filepath
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
-    return data["instruction"]
+    return str(data["instruction"])

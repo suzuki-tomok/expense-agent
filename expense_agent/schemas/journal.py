@@ -9,6 +9,7 @@ from .enums import CreditAccount, DebitAccount, TaxCategory
 
 class JournalEntry(BaseModel):
     """仕訳データ"""
+
     id: int = Field(default=0, exclude=True, description="サーバー側で自動採番")
     date: str = Field(
         pattern=r"^\d{4}-\d{2}-\d{2}$",
@@ -29,8 +30,8 @@ class JournalEntry(BaseModel):
 
         try:
             parsed = date.fromisoformat(v)
-        except ValueError:
-            raise ValueError(f"無効な日付です: {v}")
+        except ValueError as err:
+            raise ValueError(f"無効な日付です: {v}") from err
         if parsed > date.today():
             raise ValueError(f"未来日は登録できません: {v}")
         return v

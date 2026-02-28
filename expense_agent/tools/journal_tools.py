@@ -2,6 +2,7 @@
 
 import csv
 import io
+from typing import Any
 
 from pydantic import ValidationError
 
@@ -12,7 +13,7 @@ from ..schemas import JournalEntry
 class JournalStore:
     """仕訳データの永続化ストア"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._entries: list[JournalEntry] = []
 
     def add(self, entry: JournalEntry) -> JournalEntry:
@@ -23,7 +24,7 @@ class JournalStore:
     def list_all(self) -> list[JournalEntry]:
         return list(self._entries)
 
-    def clear(self):
+    def clear(self) -> None:
         """テスト用リセット"""
         self._entries.clear()
 
@@ -39,7 +40,7 @@ def register_journal_entry(
     amount: int,
     tax_category: str,
     memo: str = "",
-) -> dict:
+) -> dict[str, Any]:
     """経費の仕訳データを登録します。
 
     Args:
@@ -78,7 +79,7 @@ def register_journal_entry(
     }
 
 
-def list_journal_entries() -> dict:
+def list_journal_entries() -> dict[str, Any]:
     """登録済みの仕訳一覧を取得します。
 
     Returns:
@@ -98,7 +99,7 @@ def list_journal_entries() -> dict:
     }
 
 
-def export_journal_csv() -> dict:
+def export_journal_csv() -> dict[str, Any]:
     """登録済みの仕訳データをCSV形式でエクスポートします。
 
     会計ソフト(freee、マネーフォワード等)へのインポートを想定したフォーマットです。
@@ -114,27 +115,33 @@ def export_journal_csv() -> dict:
         }
 
     headers = [
-        "日付", "摘要", "借方勘定科目",
-        "貸方勘定科目", "金額", "税区分", "備考",
+        "日付",
+        "摘要",
+        "借方勘定科目",
+        "貸方勘定科目",
+        "金額",
+        "税区分",
+        "備考",
     ]
 
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerow(headers)
     for e in entries:
-        writer.writerow([
-            e.date,
-            e.description,
-            e.debit_account.value,
-            e.credit_account.value,
-            e.amount,
-            e.tax_category.value,
-            e.memo,
-        ])
+        writer.writerow(
+            [
+                e.date,
+                e.description,
+                e.debit_account.value,
+                e.credit_account.value,
+                e.amount,
+                e.tax_category.value,
+                e.memo,
+            ]
+        )
 
     csv_string = output.getvalue()
 
-    # ファイル出力
     export_dir = settings.csv_export_dir
     export_dir.mkdir(parents=True, exist_ok=True)
     filepath = export_dir / "journal_export.csv"

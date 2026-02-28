@@ -1,5 +1,7 @@
 # expense_agent/tools/ocr_tools.py
 
+from typing import Any
+
 from pydantic import ValidationError
 
 from ..schemas import Receipt, ReceiptItem
@@ -8,10 +10,10 @@ from ..schemas import Receipt, ReceiptItem
 def parse_receipt_result(
     store_name: str,
     date: str,
-    items: list[dict],
+    items: list[dict[str, Any]],
     total_amount: int,
     payment_method: str = "不明",
-) -> dict:
+) -> dict[str, Any]:
     """レシート画像から読み取った情報を構造化して返します。
 
     Args:

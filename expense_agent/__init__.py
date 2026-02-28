@@ -1,3 +1,3 @@
-# expense_agent/expense_agent/__init__.py
+# expense_agent/__init__.py
 
-from . import agent
+from . import agent as agent

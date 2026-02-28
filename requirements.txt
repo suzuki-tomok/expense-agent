@@ -4,6 +4,7 @@ google-adk
 pydantic
 pydantic-settings
 pyyaml
+types-PyYAML
 ruff
 mypy
 pytest

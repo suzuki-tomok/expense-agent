@@ -1,5 +1,7 @@
 # expense_agent/tools/review_tools.py
 
+from typing import Any
+
 from ..schemas import ReviewResult
 from ..schemas.enums import DebitAccount
 
@@ -11,7 +13,7 @@ def validate_journal_entry(
     amount: int,
     tax_category: str,
     description: str,
-) -> dict:
+) -> dict[str, Any]:
     """仕訳の妥当性をチェックします。
 
     Args:
