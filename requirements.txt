@@ -3,8 +3,11 @@
 google-adk
 pydantic
 pydantic-settings
-pyyaml
-types-PyYAML
+structlog
+aiosqlite
+
+# dev
+pytest
+pytest-asyncio
 ruff
 mypy
-pytest
